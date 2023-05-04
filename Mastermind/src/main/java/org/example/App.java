@@ -18,10 +18,10 @@ public class App
 {
     public static void main( String[] args )
     {
-        startGame();
+        playMastermindGame();
     }
-    public static void startGame(){
-        text();
+    public static void playMastermindGame(){
+        printMenuForGameStart();
         Scanner scanner = new Scanner(System.in);
         int difficulty = scanner.nextInt();
         int lives;
@@ -44,9 +44,9 @@ public class App
                 numberOfDigits = 4;
                 break;
         }
-        List<Integer> compNumbers = game(numberOfDigits, lives);
+        List<Integer> compNumbers = playTheGame(numberOfDigits, lives);
     }
-    public static  List<Integer> game(int numberOfDigits, int lives) {
+    public static  List<Integer> playTheGame(int numberOfDigits, int lives) {
         System.out.println("The computer has just drawn " + numberOfDigits + " numbers. Try to guess them!");
         List<Integer> compNumbers = computerDraw(numberOfDigits);
         List<Integer> userNumbers;
@@ -66,9 +66,9 @@ public class App
         }
         return compNumbers;
     }
-    public static String text() {
+    public static String printMenuForGameStart() {
         System.out.println( "Welcome in Mastermind game!");
-        System.out.println( "Try to guess the numbers drawn by the computer!");
+        System.out.println( "Try to guess the numbers drawn by the computer from 0 to 9!");
         System.out.println("Choose difficulty level:");
         System.out.println("1. Easy (You have to guess 3 numbers and you have 5 lives)");
         System.out.println("2. Medium (You have to guess 4 numbers and you have 4 lives)");
@@ -107,14 +107,14 @@ public class App
             if (compNumbers.contains(userNumber)) {
                 if (compNumbers.indexOf(userNumber) == userNumbers.indexOf(userNumber)) {
                     hot++;
-                    System.out.print("HOT" + " ");
+                    System.out.print("HOT ");
                 } else {
                     warm++;
-                    System.out.print("WARM" + " ");
+                    System.out.print("WARM ");
                 }
             } else {
                 cold++;
-                System.out.print( "COLD" + " ");
+                System.out.print( "COLD ");
             }
         }
         System.out.println();
