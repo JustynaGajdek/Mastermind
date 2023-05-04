@@ -20,7 +20,6 @@ public class App
     {
         startGame();
     }
-
     public static void startGame(){
         System.out.println( "Welcome in Mastermind game!");
         System.out.println( "Try to guess the numbers drawn by the computer!");
@@ -53,7 +52,6 @@ public class App
         System.out.println("The computer has just drawn " + numberOfDigits + " numbers. Try to guess them!");
         List<Integer> compNumbers = computerDraw(numberOfDigits);
         List<Integer> userNumbers;
-
                 while (lives > 0) {
                     System.out.println("You have " + lives + " lives left.");
                     userNumbers = getUserNumbersList(numberOfDigits);
@@ -91,7 +89,6 @@ public class App
             int number = Integer.parseInt(s);
             userNumbers.add(number);
         }
-//            System.out.println("Users numbers:" + userNumbers);
             return userNumbers;
         }
         public static  List<Integer> gameMechanic (List<Integer> compNumbers, List<Integer> userNumbers, int numberOfDigits) {
