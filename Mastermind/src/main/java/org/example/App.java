@@ -21,12 +21,7 @@ public class App
         startGame();
     }
     public static void startGame(){
-        System.out.println( "Welcome in Mastermind game!");
-        System.out.println( "Try to guess the numbers drawn by the computer!");
-        System.out.println("Choose difficulty level:");
-        System.out.println("1. Easy (You have to guess 3 numbers and you have 5 lives)");
-        System.out.println("2. Medium (You have to guess 4 numbers and you have 4 lives)");
-        System.out.println("3. Hard (You have to guess 5 numbers and you have 3 lives)");
+        text();
         Scanner scanner = new Scanner(System.in);
         int difficulty = scanner.nextInt();
         int lives;
@@ -49,24 +44,37 @@ public class App
                 numberOfDigits = 4;
                 break;
         }
+        List<Integer> compNumbers = game(numberOfDigits, lives);
+    }
+    public static  List<Integer> game(int numberOfDigits, int lives) {
         System.out.println("The computer has just drawn " + numberOfDigits + " numbers. Try to guess them!");
         List<Integer> compNumbers = computerDraw(numberOfDigits);
         List<Integer> userNumbers;
-                while (lives > 0) {
-                    System.out.println("You have " + lives + " lives left.");
-                    userNumbers = getUserNumbersList(numberOfDigits);
-                    compNumbers = gameMechanic(compNumbers, userNumbers, numberOfDigits);
+        while (lives > 0) {
+            System.out.println("You have " + lives + " lives left.");
+            userNumbers = getUserNumbersList(numberOfDigits);
+            compNumbers = gameMechanic(compNumbers, userNumbers, numberOfDigits);
 
-                    if (compNumbers.equals(userNumbers)) {
-                        System.out.println("Congratulations! You guessed the numbers!");
-                        break;
-                    }
-                    lives--;
-                    if (lives == 0) {
-                        System.out.println("You lost! No lives left. The numbers were: " + compNumbers);
-                    }
-                }
+            if (compNumbers.equals(userNumbers)) {
+                System.out.println("Congratulations! You guessed the numbers!");
+                break;
+            }
+            lives--;
+            if (lives == 0) {
+                System.out.println("You lost! No lives left. The numbers were: " + compNumbers);
+            }
+        }
+        return compNumbers;
     }
+    public static String text() {
+        System.out.println( "Welcome in Mastermind game!");
+        System.out.println( "Try to guess the numbers drawn by the computer!");
+        System.out.println("Choose difficulty level:");
+        System.out.println("1. Easy (You have to guess 3 numbers and you have 5 lives)");
+        System.out.println("2. Medium (You have to guess 4 numbers and you have 4 lives)");
+        System.out.println("3. Hard (You have to guess 5 numbers and you have 3 lives)");
+    return null;
+}
     public static List<Integer> computerDraw(int numberOfDigits) {
         Random random = new Random();
         List<Integer> compNumbers = new ArrayList<>();
@@ -110,7 +118,6 @@ public class App
             }
         }
         System.out.println();
-
         if (hot == numberOfDigits) {
             System.out.println("You won!!");
         } else {
